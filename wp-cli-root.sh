@@ -1,7 +1,13 @@
 #!/bin/bash
 
 source /config.sh
-source /config/run_config.sh
+if [[ -f /config/run_config.sh ]]; then
+  source /config/run_config.sh
+else
+  echo -e "${txtred}The config is still set to the defaults.${txtrst}"
+  echo -e "${txtred}Did you forget to change them in config/run_config.sh?${txtrst}"
+  exit 1;
+fi
 
 if [[ $ADMIN_USERNAME == $DEFAULT_VALUE || $ADMIN_PASSWORD == $DEFAULT_VALUE || $ADMIN_EMAIL == $DEFAULT_VALUE || $SITE_TITLE == $DEFAULT_VALUE ]]; then
   echo -e "${txtred}The config is still set to the defaults.${txtrst}"
