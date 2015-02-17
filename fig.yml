@@ -1,0 +1,16 @@
+wp:
+  build: .
+  ports:
+    - "3306:3306"
+    - "80:80"
+  volumes_from:
+    - data
+  volumes:
+    - config/:/config/:ro
+data:
+  image: busybox
+  volumes:
+    - /var/lib/mysql
+    - /app/wp-content/plugins
+    - /app/wp-content/themes
+    - /app/wp-content/uploads
